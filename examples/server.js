@@ -2,7 +2,7 @@
  * @Author: liutao
  * @Date: 2020-04-20 17:51:44
  * @LastEditors: liutao
- * @LastEditTime: 2020-04-20 18:22:12
+ * @LastEditTime: 2020-04-21 16:17:09
  * @Description: file content
  */
 
@@ -24,8 +24,38 @@ router.get('/simple/get', function(req, res) {
 })
 
 router.get('/base/get', function(req, res) {
-  res.json(req.query)
+  // res.json(req.query)
+  res.json({
+    code: '10000',
+    data: {
+      name: '张三'
+    }
+  })
 })
+
+router.post('/base/post', function(req, res) {
+  // res.json(req.body)
+  res.json({
+    code: '10000',
+    data: {
+      name: '张三'
+    }
+  })
+})
+
+router.post('/base/buffer', function(req, res) {
+  let msg = []
+  req.on('data', (chunk) => {
+    if (chunk) {
+      msg.push(chunk)
+    }
+  })
+  req.on('end', () => {
+    let buf = Buffer.concat(msg)
+    res.json(buf.toJSON())
+  })
+})
+
 
 app.use(router)
 

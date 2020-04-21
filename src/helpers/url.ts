@@ -2,11 +2,15 @@
  * @Author: liutao
  * @Date: 2020-04-20 18:03:14
  * @LastEditors: liutao
- * @LastEditTime: 2020-04-20 18:16:52
+ * @LastEditTime: 2020-04-21 14:10:56
  * @Description: file content
  */
 import { isDate, isObject } from './util'
 
+/**
+ * 用来对axios的config里的params进行编码
+ * @param val params的key或者value
+ */
 function encode(val: string): string {
   return encodeURIComponent(val)
     .replace(/%40/g, '@')
@@ -18,6 +22,10 @@ function encode(val: string): string {
     .replace(/%5D/gi, ']')
 }
 
+/**
+ * 将params转成key=xxx&value=xxx格式
+ * @param params axios请求中的params参数
+ */
 function getParts(params: any): string[] {
   const parts: string[] = []
   Object.keys(params).forEach(key => {
@@ -45,6 +53,11 @@ function getParts(params: any): string[] {
   return parts
 }
 
+/**
+ * 将url和params合并
+ * @param url 请求url
+ * @param params 请求params
+ */
 export function bulidURL(url: string, params?: any) {
   if (!params) {
     return url
