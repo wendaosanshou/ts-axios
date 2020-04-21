@@ -2,7 +2,7 @@
  * @Author: liutao
  * @Date: 2020-04-20 17:36:30
  * @LastEditors: liutao
- * @LastEditTime: 2020-04-21 16:39:54
+ * @LastEditTime: 2020-04-21 17:10:27
  * @Description: types entry file
  */
 export type Method =
@@ -28,6 +28,7 @@ export interface AxiosRequestConfig {
   params?: any
   headers?: any
   responseType?: XMLHttpRequestResponseType
+  timeout?: number
 }
 
 export interface AxiosResponse {
